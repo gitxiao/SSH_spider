@@ -5,6 +5,17 @@ public class Product {
 	private Integer pid;
 	private String pname;
 	private Double price;
+	
+	public Product(){
+		
+	}
+	
+	public Product(Integer pid, String pname, Double price) {
+		super();
+		this.pid = pid;
+		this.pname = pname;
+		this.price = price;
+	}
 	public Integer getPid() {
 		return pid;
 	}

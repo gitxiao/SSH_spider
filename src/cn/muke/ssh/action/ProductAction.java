@@ -66,4 +66,13 @@ public class ProductAction extends ActionSupport implements ModelDriven<Product>
 		productService.save(product);
 		return null;
 	}
+	
+	/**
+	 * 保存商品的方法,测试能否在外部调用
+	 */
+	public String save(Product product){
+		System.out.println("ProductAction action 中的save");
+		productService.save(product);
+		return null;
+	}
 }

@@ -21,7 +21,7 @@
         </global-exception-mappings> -->
 
 		<!-- 这里action的name对应addProduct.jsp中form表单中的action -->
-		<!-- action类的创建方式有两种, 1:由structs自己创建,2:由spring创建. 下面是第一种方式 -->
+		<!-- action类的创建方式有两种, 1:由structs自己创建,2:由spring创建.  -->
 		<!-- 方式1:类名写全路径,action类由Structs自己创建 -->
 		<!-- method={1}中的{1}代表ajaxregister!*中的*,即加入你访问路径是ajaxregister!save.action，
 			  则此刻访问的是该Action中的save方法。同理，如果通配符* == delete,则就访问的是delete方法。

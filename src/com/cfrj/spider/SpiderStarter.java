@@ -7,6 +7,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
+import cn.muke.ssh.domain.Product;
+import cn.muke.ssh.service.ProductService;
+
 import com.cfrj.spider.model.SpiderParams;
 import com.cfrj.spider.queue.UrlQueue;
 import com.cfrj.spider.worker.SpiderWorker;
@@ -16,6 +19,7 @@ import com.cfrj.spider.worker.SpiderWorker;
 public class SpiderStarter {
 
 	public static void main(String[] args){
+		
 		// 初始化配置参数
 		initializeParams();
 

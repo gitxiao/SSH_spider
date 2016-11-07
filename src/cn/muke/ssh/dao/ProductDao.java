@@ -18,4 +18,5 @@ public class ProductDao extends HibernateDaoSupport{
 		System.out.println("product.getPrice() = " + product.getPrice());
 		this.getHibernateTemplate().save(product);
 	}
+	
 }
