@@ -28,10 +28,10 @@ public class PageFetcher {
 	private HttpClient client;
 	
 	/**
-	 * åˆ›å»ºHttpClientå®ä¾‹ï¼Œå¹¶åˆå§‹åŒ–è¿æ¥å‚æ•°
+	 * ´´½¨HttpClientÊµÀı£¬²¢³õÊ¼»¯Á¬½Ó²ÎÊı
 	 */
 	public PageFetcher(){
-		// è®¾ç½®è¶…æ—¶æ—¶é—´
+		// ÉèÖÃ³¬Ê±Ê±¼ä
 		HttpParams params = new BasicHttpParams();
 	    HttpConnectionParams.setConnectionTimeout(params, 10 * 1000);
 	    HttpConnectionParams.setSoTimeout(params, 10 * 1000);	    
@@ -39,7 +39,7 @@ public class PageFetcher {
 	}
 	
 	/**
-	 * ä¸»åŠ¨å…³é—­HttpClientè¿æ¥
+	 * Ö÷¶¯¹Ø±ÕHttpClientÁ¬½Ó
 	 */
 	public void close(){
 		client.getConnectionManager().shutdown();
@@ -47,10 +47,10 @@ public class PageFetcher {
 	
 	
 	/**
-	 * ç”¨URL
+	 * ÓÃURL
 	 * @param url
 	 * @return
-	 * è¶…é“¾æ¥æ­£åˆ™:<a[\s\S]+?</a>
+	 * ³¬Á´½ÓÕıÔò:<a[\s\S]+?</a>
 	 */
 	public FetchedPage getContentFromUrl(String urlStr){
 		URL url = null;
@@ -87,17 +87,17 @@ public class PageFetcher {
 				sb.append(temp + '\n');
 			}
 			
-			// å°†URLæ”¾å…¥å·²çˆ¬å–é˜Ÿåˆ—
+			// ½«URL·ÅÈëÒÑÅÀÈ¡¶ÓÁĞ
 			
-//			System.out.println("é¡µé¢å†…å®¹: sb.toString() = " + sb.toString());
+//			System.out.println("Ò³ÃæÄÚÈİ: sb.toString() = " + sb.toString());
 
 						
 		} catch (Exception e) {
-			// å› è¯·æ±‚è¶…æ—¶ç­‰é—®é¢˜äº§ç”Ÿçš„å¼‚å¸¸ï¼Œå°†URLæ”¾å›å¾…æŠ“å–é˜Ÿåˆ—ï¼Œé‡æ–°çˆ¬å–
+			// ÒòÇëÇó³¬Ê±µÈÎÊÌâ²úÉúµÄÒì³££¬½«URL·Å»Ø´ı×¥È¡¶ÓÁĞ£¬ÖØĞÂÅÀÈ¡
 			e.printStackTrace();
 			Log.info(">> Put back url: " + url);
-			VisitedUrlQueue.addElementWithException(urlStr,"å¼‚å¸¸");
-//			UrlQueue.addLastElement(urlStr);			//TODO é‡æ–°æ”¾å›é˜Ÿåˆ—æ—¶åº”è¯¥è®¡æ•°,å¦åˆ™å¦‚æœä¸€ç›´æœ‰å¼‚å¸¸,ä¼šæ— é™é‡æ–°çˆ¬å–
+			VisitedUrlQueue.addElementWithException(urlStr,"Òì³£");
+//			UrlQueue.addLastElement(urlStr);			//TODO ÖØĞÂ·Å»Ø¶ÓÁĞÊ±Ó¦¸Ã¼ÆÊı,·ñÔòÈç¹ûÒ»Ö±ÓĞÒì³£,»áÎŞÏŞÖØĞÂÅÀÈ¡
 		} finally{
 			try {
 				if(isr != null){
@@ -116,16 +116,16 @@ public class PageFetcher {
 	}
 	
 	/**
-	 * ç”¨HttpGet
-	 * æ ¹æ®urlçˆ¬å–ç½‘é¡µå†…å®¹
+	 * ÓÃHttpGet
+	 * ¸ù¾İurlÅÀÈ¡ÍøÒ³ÄÚÈİ
 	 * @param url
 	 * @return
 	 */
 //	public FetchedPage getContentFromUrl_(String url){
 //		String content = null;
 //		int statusCode = 500;
-//		String encode = null;				//ç¼–ç åº”è‡ªåŠ¨è·å–
-//		// åˆ›å»ºGetè¯·æ±‚ï¼Œå¹¶è®¾ç½®Header
+//		String encode = null;				//±àÂëÓ¦×Ô¶¯»ñÈ¡
+//		// ´´½¨GetÇëÇó£¬²¢ÉèÖÃHeader
 //		HttpGet getHttp = new HttpGet(url);	
 //		getHttp.setHeader("User-Agent","Mozilla/5.0 (Windows NT 6.1; rv:16.0) Gecko/20100101 Firefox/16.0");
 //		HttpResponse response = null;
@@ -133,19 +133,19 @@ public class PageFetcher {
 //		try{
 //			encode = getCharset(url);
 ////			System.out.println("encode = " + encode);
-//			// è·å¾—ä¿¡æ¯è½½ä½“
+//			// »ñµÃĞÅÏ¢ÔØÌå
 //			response = client.execute(getHttp);
 //			statusCode = response.getStatusLine().getStatusCode();
 //			HttpEntity entity = response.getEntity();	
 //			
 //			if(entity != null){
-//				// è½¬åŒ–ä¸ºæ–‡æœ¬ä¿¡æ¯, è®¾ç½®çˆ¬å–ç½‘é¡µçš„å­—ç¬¦é›†ï¼Œé˜²æ­¢ä¹±ç 
+//				// ×ª»¯ÎªÎÄ±¾ĞÅÏ¢, ÉèÖÃÅÀÈ¡ÍøÒ³µÄ×Ö·û¼¯£¬·ÀÖ¹ÂÒÂë
 //				content = EntityUtils.toString(entity, encode);
 //			}
 //		}catch(Exception e){
 //			e.printStackTrace();
 //			
-//			// å› è¯·æ±‚è¶…æ—¶ç­‰é—®é¢˜äº§ç”Ÿçš„å¼‚å¸¸ï¼Œå°†URLæ”¾å›å¾…æŠ“å–é˜Ÿåˆ—ï¼Œé‡æ–°çˆ¬å–
+//			// ÒòÇëÇó³¬Ê±µÈÎÊÌâ²úÉúµÄÒì³££¬½«URL·Å»Ø´ı×¥È¡¶ÓÁĞ£¬ÖØĞÂÅÀÈ¡
 //			Log.info(">> Put back url: " + url);
 ////			UrlQueue.addLastElement(url);				
 //		}finally{
@@ -156,7 +156,7 @@ public class PageFetcher {
 	
 	
 	/**
-	 * è·å–ç½‘é¡µçš„ç¼–ç æ ¼å¼
+	 * »ñÈ¡ÍøÒ³µÄ±àÂë¸ñÊ½
 	 * 
 	 */
 	public String getCharset(HttpURLConnection conn,InputStreamReader isr,String urlHeader) {   
@@ -165,9 +165,9 @@ public class PageFetcher {
 		  try {     
 		      String contentType = conn.getContentType();    
 //		      System.out.println("contentType = " + contentType);
-		      //åœ¨headeré‡Œé¢æ‰¾charset     
+		      //ÔÚheaderÀïÃæÕÒcharset     
 		      result = findCharset(contentType);      
-		      //å¦‚æœæ²¡æ‰¾åˆ°çš„è¯ï¼Œåˆ™ä¸€è¡Œä¸€è¡Œçš„è¯»å…¥é¡µé¢çš„htmlä»£ç ï¼Œä»htmlä»£ç ä¸­å¯»æ‰¾     
+		      //Èç¹ûÃ»ÕÒµ½µÄ»°£¬ÔòÒ»ĞĞÒ»ĞĞµÄ¶ÁÈëÒ³ÃæµÄhtml´úÂë£¬´Óhtml´úÂëÖĞÑ°ÕÒ     
 		      if(result == null){     
 		         BufferedReader reader = new BufferedReader(isr);     
 		         line = reader.readLine();     
@@ -180,7 +180,7 @@ public class PageFetcher {
 		            	 break; 
 		             }else if(line.contains("<iframe")){
 		            	 String iframe = findIframeUrl(urlHeader,line);
-//		            	 UrlQueue.addElement(iframe);				//TODO 	iframeå¦‚ä½•å¤„ç†, æ˜¯å¦éœ€è¦æ·»åŠ åˆ°æœªçˆ¬å–é˜Ÿåˆ—
+//		            	 UrlQueue.addElement(iframe);				//TODO 	iframeÈçºÎ´¦Àí, ÊÇ·ñĞèÒªÌí¼Óµ½Î´ÅÀÈ¡¶ÓÁĞ
 		            	 return getCharset(iframe,urlHeader);
 		             }else if(line.contains("location.href")){
 		            	 String location = findLocation(urlHeader,line);
@@ -199,7 +199,7 @@ public class PageFetcher {
 	 }   
 	
 	/**
-	 * è·å–ç½‘é¡µçš„ç¼–ç æ ¼å¼
+	 * »ñÈ¡ÍøÒ³µÄ±àÂë¸ñÊ½
 	 * 
 	 */
 	public String getCharset(String link,String urlHeader) {   
@@ -216,9 +216,9 @@ public class PageFetcher {
 		      conn.connect();     
 		      String contentType = conn.getContentType();    
 //		      System.out.println("contentType = " + contentType);
-		      //åœ¨headeré‡Œé¢æ‰¾charset     
+		      //ÔÚheaderÀïÃæÕÒcharset     
 		      result = findCharset(contentType);      
-		      //å¦‚æœæ²¡æ‰¾åˆ°çš„è¯ï¼Œåˆ™ä¸€è¡Œä¸€è¡Œçš„è¯»å…¥é¡µé¢çš„htmlä»£ç ï¼Œä»htmlä»£ç ä¸­å¯»æ‰¾     
+		      //Èç¹ûÃ»ÕÒµ½µÄ»°£¬ÔòÒ»ĞĞÒ»ĞĞµÄ¶ÁÈëÒ³ÃæµÄhtml´úÂë£¬´Óhtml´úÂëÖĞÑ°ÕÒ     
 		      if(result == null){     
 		         BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));     
 		         line = reader.readLine();     
@@ -231,7 +231,7 @@ public class PageFetcher {
 		            	 break; 
 		             }else if(line.contains("<iframe")){
 		            	 String iframe = findIframeUrl(urlHeader,line);
-//		            	 UrlQueue.addElement(iframe);				//TODO 	iframeå¦‚ä½•å¤„ç†, æ˜¯å¦éœ€è¦æ·»åŠ åˆ°æœªçˆ¬å–é˜Ÿåˆ—
+//		            	 UrlQueue.addElement(iframe);				//TODO 	iframeÈçºÎ´¦Àí, ÊÇ·ñĞèÒªÌí¼Óµ½Î´ÅÀÈ¡¶ÓÁĞ
 		            	 return getCharset(iframe,urlHeader);
 		             }else if(line.contains("location.href")){
 		            	 String location = findLocation(urlHeader,line);
@@ -243,14 +243,14 @@ public class PageFetcher {
 		 } catch (Exception e) {     
 		     // TODO Auto-generated catch block     
 		     e.printStackTrace();
-		     System.out.println("å¼‚å¸¸ link = " + link);
+		     System.out.println("Òì³£ link = " + link);
 		 } finally {   
 			 conn.disconnect();   
 		 }   
 		 return result;     
 	 }     
 	      
-	 //è¾…åŠ©å‡½æ•°     
+	 //¸¨Öúº¯Êı     
 	 private String findCharset(String line) {    
 //		 System.out.println("findCharset line = " + line);
 	     int x = line.indexOf("charset=");     

@@ -38,17 +38,17 @@ public class ContentParser {
 //		System.out.println("fetchedPage.getContent() :" + fetchedPage.getContent());
 //		System.out.println("fetchedPage.getUrl() :" + fetchedPage.getUrl());
 //		System.out.println("fetchedPage.getUrl() :" + fetchedPage.getUrl());
-//		System.out.println("Ê†áÈ¢ò:" + title + ",elemTitle.get(0) = " + elemTitle.get(0));
+//		System.out.println("±ÍÃ‚:" + title + ",elemTitle.get(0) = " + elemTitle.get(0));
 		
-		VisitedUrlQueue.addElement(fetchedPage.getUrl(),title);			//ÁΩëÈ°µÊ∑ªÂä†Âà∞Áà¨ÂèñÁªìÊûúÈ°µÈù¢,TODO ÊåÅ‰πÖÂåñÂ∑•‰Ωú
+		VisitedUrlQueue.addElement(fetchedPage.getUrl(),title);			//Õ¯“≥ÃÌº”µΩ≈¿»°Ω·π˚“≥√Ê,TODO ≥÷æ√ªØπ§◊˜
 		
 		
 //		Element elemContent = doc.getElementById("content");
 //		String content = elemContent.html();
 		
-		// Â¶ÇÊûúÂΩìÂâçÈ°µÈù¢ÂåÖÂê´ÁõÆÊ†áÊï∞ÊçÆ
+		// »Áπ˚µ±«∞“≥√Ê∞¸∫¨ƒø±Í ˝æ›
 //		if(true || containsTargetData(fetchedPage.getUrl(), doc)){
-			// Ëß£ÊûêÂπ∂Ëé∑ÂèñÁõÆÊ†áÊï∞ÊçÆ
+			// Ω‚Œˆ≤¢ªÒ»°ƒø±Í ˝æ›
 			// TODO
 		
 			String newUrl = null;
@@ -64,7 +64,7 @@ public class ContentParser {
 //				System.out.println("newUrl = " + newUrl);
 //				System.out.println("urlDesc = " + urlDesc);
 //				System.out.println(urlDesc + ":	" + newUrl);
-				if(newUrl != null){								//TODO ÁõëÊµãÊòØÂê¶ÂêàÊ≥ïurl 
+				if(newUrl != null){								//TODO º‡≤‚ «∑Ò∫œ∑®url 
 					UrlQueue.addElement(newUrl);
 				}
 			}
@@ -72,18 +72,18 @@ public class ContentParser {
 
 //		}
 		
-		// Ê†πÊçÆÂΩìÂâçÈ°µÈù¢ÂíåURLËé∑Âèñ‰∏ã‰∏ÄÊ≠•Áà¨ÂèñÁöÑURLs
+		// ∏˘æ›µ±«∞“≥√Ê∫ÕURLªÒ»°œ¬“ª≤Ω≈¿»°µƒURLs
 		// TODO
 		
 		return targetObject; 
 	}
 	
 	private boolean containsTargetData(String url, Document contentDoc){
-		// ÈÄöËøáURLÂà§Êñ≠
+		// Õ®π˝URL≈–∂œ
 		// TODO
 		
 //		System.out.println(contentDoc.toString());
-		// ÈÄöËøácontentÂà§Êñ≠ÔºåÊØîÂ¶ÇÈúÄË¶ÅÊäìÂèñclass‰∏∫grid_view‰∏≠ÁöÑÂÜÖÂÆπ
+		// Õ®π˝content≈–∂œ£¨±»»Á–Ë“™◊•»°classŒ™grid_view÷–µƒƒ⁄»›
 		if(contentDoc.getElementsByClass("grid_view") != null){
 			System.out.println(contentDoc.getElementsByClass("grid_view").toString());
 			return true;
@@ -94,7 +94,7 @@ public class ContentParser {
 	
 	
 	/**
-	 * ‰ªéË∂ÖÈìæÊé•‰∏≠ÊãøÂá∫Êñ∞ÁöÑurlÂú∞ÂùÄ
+	 * ¥”≥¨¡¥Ω”÷–ƒ√≥ˆ–¬µƒurlµÿ÷∑
 	 * @param aLink
 	 * @return
 	 */
@@ -139,20 +139,20 @@ public class ContentParser {
 	}
 	
 	/**
-	 * ‰ªéË∂ÖÈìæÊé•‰∏≠ÊãøÂá∫ÈìæÊé•ÊèèËø∞
+	 * ¥”≥¨¡¥Ω”÷–ƒ√≥ˆ¡¥Ω”√Ë ˆ
 	 * @param aLink
 	 * @return
 	 */
 	private String getDescOfALink(String aLink){
 		String desc = getSubStringFrom(aLink,">","<");
 		if(desc.contains("<img") || desc.contains("<Img") || desc.contains("src=")){
-			desc = "ÂõæÁâáÈìæÊé•";
+			desc = "Õº∆¨¡¥Ω”";
 		}
 		return desc;
 	}
 	
 	/**
-	 * Ëé∑ÂèñÂ≠óÁ¨¶‰∏≤‰∏≠Êüê‰∏§‰∏™ÊåáÂÆöÂ≠ê‰∏≤‰πãÈó¥ÁöÑÂ≠ê‰∏≤
+	 * ªÒ»°◊÷∑˚¥Æ÷–ƒ≥¡Ω∏ˆ÷∏∂®◊”¥Æ÷Æº‰µƒ◊”¥Æ
 	 */
 	private String getSubStringFrom(String father,String child0,String child1){
 		String child = null;
@@ -171,7 +171,7 @@ public class ContentParser {
 	/** 
 	  *  
 	  * @param s 
-	  * @return Ëé∑ÂæóÁΩëÈ°µÊ†áÈ¢ò 
+	  * @return ªÒµ√Õ¯“≥±ÍÃ‚ 
 	  */  
 	 public String getTitle(final String s){  
 		 String regex;  
@@ -187,7 +187,7 @@ public class ContentParser {
 	 
 	 /** 
 	  * @param s 
-	  * @return ÂéªÊéâÊ†áÁ≠æÊ†áËÆ∞ <>
+	  * @return »•µÙ±Í«©±Íº« <>
 	  */  
 	 public String outTag(final String s){  
 		 return s.replaceAll("<.*?>", "");  

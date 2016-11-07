@@ -5,7 +5,7 @@ public class FetchedPage {
 	private String urlHeader;
 	private String content;
 	private int statusCode;
-	private int antiMode = -1;			//åçˆ¬æ¨¡å¼,é»˜è®¤ä¸º-1,å³è¯¥ç½‘é¡µæ²¡æœ‰åçˆ¬æªæ–½
+	private int antiMode = -1;			//·´ÅÀÄ£Ê½,Ä¬ÈÏÎª-1,¼´¸ÃÍøÒ³Ã»ÓĞ·´ÅÀ´ëÊ©
 	
 	public FetchedPage(){
 		

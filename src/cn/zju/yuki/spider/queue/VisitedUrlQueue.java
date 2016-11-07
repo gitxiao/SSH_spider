@@ -4,18 +4,18 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class VisitedUrlQueue {
-	// 宸叉姄鍙杣rl闃熷垪
+	// 已抓取url队列
 //	private static LinkedList<String> visitedUrlQueue = new LinkedList<String>();
 	private static Map<String,String> visitedPages = new HashMap<String,String>();
 	private static Map<String,String> exceptionPages = new HashMap<String,String>();
 	
 	public synchronized static void addElement(String url,String desc){
-		System.out.println("鐖彇缃戦〉: " + desc + "	 " + url);
+		System.out.println("爬取网页: " + desc + "	 " + url);
 		visitedPages.put(url, desc);
 	}
 	
 	public synchronized static void addElementWithException(String url,String desc){
-		System.out.println("寮傚父缃戦〉: " + desc + "	 " + url);
+		System.out.println("异常网页: " + desc + "	 " + url);
 		exceptionPages.put(url, desc);
 	}
 	

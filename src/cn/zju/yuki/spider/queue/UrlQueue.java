@@ -3,17 +3,17 @@ package cn.zju.yuki.spider.queue;
 import java.util.LinkedList;
 
 public class UrlQueue {
-	//urlé˜Ÿåˆ—
+	//url¶ÓÁĞ
 	private static LinkedList<String> urlQueue = new LinkedList<String>();
 
 	public synchronized static void addElement(String url){
 		if(!isContains(url)){
 			urlQueue.add(url);
-//			System.out.println("UrlQueue addElement å¾…çˆ¬å–url: " + url);
-//			System.out.println("addElement æ·»åŠ å");
+//			System.out.println("UrlQueue addElement ´ıÅÀÈ¡url: " + url);
+//			System.out.println("addElement Ìí¼Óºó");
 //			traversal();
 		}else{
-//			System.out.println("å·²çˆ¬å–çš„ç½‘å€, ä¸å†è¿›å…¥é˜Ÿåˆ—:" + url);
+//			System.out.println("ÒÑÅÀÈ¡µÄÍøÖ·, ²»ÔÙ½øÈë¶ÓÁĞ:" + url);
 		}
 	}
 	
@@ -22,12 +22,12 @@ public class UrlQueue {
 	}
 	
 	public synchronized static String outElement(){
-//		System.out.println("outElement å–å‡ºå‰:");
+//		System.out.println("outElement È¡³öÇ°:");
 //		traversal();
 
 		String url = urlQueue.removeFirst();
 		
-//		System.out.println("outElement å–å‡ºå:");
+//		System.out.println("outElement È¡³öºó:");
 //		traversal();
 		return url;
 	}
@@ -45,10 +45,10 @@ public class UrlQueue {
 	}
 	
 	public static void traversal(){
-		System.out.println("UrlQueue éå†å¼€å§‹===============================================>>>");
+		System.out.println("UrlQueue ±éÀú¿ªÊ¼===============================================>>>");
 		for(String url : urlQueue){
 			System.out.println("url = " + url);
 		}
-		System.out.println("UrlQueue éå†ç»“æŸ===============================================<<<");
+		System.out.println("UrlQueue ±éÀú½áÊø===============================================<<<");
 	}
 }

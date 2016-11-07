@@ -33,44 +33,44 @@ public class SpiderWorker implements Runnable{
 	
 	@Override
 	public void run() {
-		// ç™»å½•
+		// µÇÂ¼
 		
 		
-		// å½“å¾…æŠ“å–URLé˜Ÿåˆ—ä¸ä¸ºç©ºæ—¶ï¼Œæ‰§è¡Œçˆ¬å–ä»»åŠ¡
-		// æ³¨ï¼š å½“é˜Ÿåˆ—å†…å®¹ä¸ºç©ºæ—¶ï¼Œä¹Ÿä¸ä»£è¡¨çˆ¬å–ä»»åŠ¡å·²ç»ç»“æŸäº†
-		//     å› ä¸ºæœ‰å¯èƒ½æ˜¯UrlQueueæš‚æ—¶ç©ºï¼Œå…¶ä»–workerçº¿ç¨‹è¿˜æ²¡æœ‰å°†æ–°çš„URLæ”¾å…¥é˜Ÿåˆ—
-		//	        æ‰€ä»¥ï¼Œè¿™é‡Œå¯ä»¥åšä¸ªç­‰å¾…æ—¶é—´ï¼Œå†è¿›è¡ŒæŠ“å–ï¼ˆäºŒæ¬¡æœºä¼šï¼‰
+		// µ±´ı×¥È¡URL¶ÓÁĞ²»Îª¿ÕÊ±£¬Ö´ĞĞÅÀÈ¡ÈÎÎñ
+		// ×¢£º µ±¶ÓÁĞÄÚÈİÎª¿ÕÊ±£¬Ò²²»´ú±íÅÀÈ¡ÈÎÎñÒÑ¾­½áÊøÁË
+		//     ÒòÎªÓĞ¿ÉÄÜÊÇUrlQueueÔİÊ±¿Õ£¬ÆäËûworkerÏß³Ì»¹Ã»ÓĞ½«ĞÂµÄURL·ÅÈë¶ÓÁĞ
+		//	        ËùÒÔ£¬ÕâÀï¿ÉÒÔ×ö¸öµÈ´ıÊ±¼ä£¬ÔÙ½øĞĞ×¥È¡£¨¶ş´Î»ú»á£©
 		while(!UrlQueue.isEmpty()){
-			// ä»å¾…æŠ“å–é˜Ÿåˆ—ä¸­æ‹¿URL
+			// ´Ó´ı×¥È¡¶ÓÁĞÖĞÄÃURL
 			String url = UrlQueue.outElement();
 			
-			//æ‹¿åˆ°çš„urlåˆ¤æ–­æ˜¯å¦å·²ç»å­˜åœ¨äºå·²æŠ“å–é˜Ÿåˆ—,å¦‚æœå­˜åœ¨,åˆ™è·³è¿‡
+			//ÄÃµ½µÄurlÅĞ¶ÏÊÇ·ñÒÑ¾­´æÔÚÓÚÒÑ×¥È¡¶ÓÁĞ,Èç¹û´æÔÚ,ÔòÌø¹ı
 			if(VisitedUrlQueue.isContains(url)){
 				continue;
 			}
-//			System.out.println("çˆ¬å–url------------------------------------------------------:" + url);
+//			System.out.println("ÅÀÈ¡url------------------------------------------------------:" + url);
 			
-			// æŠ“å–URLæŒ‡å®šçš„é¡µé¢ï¼Œå¹¶è¿”å›çŠ¶æ€ç å’Œé¡µé¢å†…å®¹æ„æˆçš„FetchedPageå¯¹è±¡
+			// ×¥È¡URLÖ¸¶¨µÄÒ³Ãæ£¬²¢·µ»Ø×´Ì¬ÂëºÍÒ³ÃæÄÚÈİ¹¹³ÉµÄFetchedPage¶ÔÏó
 			FetchedPage fetchedPage = fetcher.getContentFromUrl(url);
 			
-			// æ£€æŸ¥çˆ¬å–é¡µé¢çš„åˆæ³•æ€§ï¼Œçˆ¬è™«æ˜¯å¦è¢«ç¦æ­¢
+			// ¼ì²éÅÀÈ¡Ò³ÃæµÄºÏ·¨ĞÔ£¬ÅÀ³æÊÇ·ñ±»½ûÖ¹
 			if(!handler.check(fetchedPage)){
-				// åˆ‡æ¢IPç­‰æ“ä½œ
+				// ÇĞ»»IPµÈ²Ù×÷
 				// TODO
 				
-				Log.info("çˆ¬è™«è¢«ç¦æ­¢: Spider-" + threadIndex + ": switch IP to ");
+				Log.info("ÅÀ³æ±»½ûÖ¹: Spider-" + threadIndex + ": switch IP to ");
 				continue;
 			}
 			
-			// è§£æé¡µé¢ï¼Œè·å–ç›®æ ‡æ•°æ®
+			// ½âÎöÒ³Ãæ£¬»ñÈ¡Ä¿±êÊı¾İ
 			Object targetData = parser.parse(fetchedPage);
 			
-			// å­˜å‚¨ç›®æ ‡æ•°æ®åˆ°æ•°æ®å­˜å‚¨ï¼ˆå¦‚DBï¼‰ã€å­˜å‚¨å·²çˆ¬å–çš„Urlåˆ°VisitedUrlQueue
+			// ´æ´¢Ä¿±êÊı¾İµ½Êı¾İ´æ´¢£¨ÈçDB£©¡¢´æ´¢ÒÑÅÀÈ¡µÄUrlµ½VisitedUrlQueue
 			store.store(targetData);
 			
 			// delay
 			try {
-				Thread.sleep(SpiderParams.DEYLAY_TIME);			//ç­‰å¾…æ–°æŠ“å–çš„urlè¿›å…¥é˜Ÿåˆ—
+				Thread.sleep(SpiderParams.DEYLAY_TIME);			//µÈ´ıĞÂ×¥È¡µÄurl½øÈë¶ÓÁĞ
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}

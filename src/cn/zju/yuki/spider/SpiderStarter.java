@@ -15,20 +15,20 @@ import cn.zju.yuki.spider.worker.SpiderWorker;
 public class SpiderStarter {
 
 	public static void main(String[] args){
-		// åˆå§‹åŒ–é…ç½®å‚æ•°
+		// ³õÊ¼»¯ÅäÖÃ²ÎÊı
 		initializeParams();
 
-		// åˆå§‹åŒ–çˆ¬å–é˜Ÿåˆ—
+		// ³õÊ¼»¯ÅÀÈ¡¶ÓÁĞ
 		initializeQueue();
 		
-		// åˆ›å»ºworkerçº¿ç¨‹å¹¶å¯åŠ¨
+		// ´´½¨workerÏß³Ì²¢Æô¶¯
 		for(int i = 1; i <= SpiderParams.WORKER_NUM; i++){
 			new Thread(new SpiderWorker(i)).start();
 		}
 	}
 	
 	/**
-	 * åˆå§‹åŒ–é…ç½®æ–‡ä»¶å‚æ•°
+	 * ³õÊ¼»¯ÅäÖÃÎÄ¼ş²ÎÊı
 	 */
 	private static void initializeParams(){
 		InputStream in;
@@ -37,7 +37,7 @@ public class SpiderStarter {
 			Properties properties = new Properties();
 			properties.load(in);
 			
-			// ä»é…ç½®æ–‡ä»¶ä¸­è¯»å–å‚æ•°
+			// ´ÓÅäÖÃÎÄ¼şÖĞ¶ÁÈ¡²ÎÊı
 			SpiderParams.WORKER_NUM = Integer.parseInt(properties.getProperty("spider.threadNum"));
 			SpiderParams.DEYLAY_TIME = Integer.parseInt(properties.getProperty("spider.fetchDelay"));
 
@@ -52,10 +52,10 @@ public class SpiderStarter {
 	}
 	
 	/**
-	 * å‡†å¤‡åˆå§‹çš„çˆ¬å–é“¾æ¥
+	 * ×¼±¸³õÊ¼µÄÅÀÈ¡Á´½Ó
 	 */
 	private static void initializeQueue(){
-		// ä¾‹å¦‚ï¼Œéœ€è¦æŠ“å–è±†ç“£TOP 250çš„ç”µå½±ä¿¡æ¯ï¼Œæ ¹æ®é“¾æ¥è§„åˆ™ç”ŸæˆURLsæ”¾å…¥å¸¦æŠ“å–é˜Ÿåˆ—
+		// ÀıÈç£¬ĞèÒª×¥È¡¶¹°êTOP 250µÄµçÓ°ĞÅÏ¢£¬¸ù¾İÁ´½Ó¹æÔòÉú³ÉURLs·ÅÈë´ø×¥È¡¶ÓÁĞ
 //		for(int i = 0; i < 250; i += 25){
 //			UrlQueue.addElement("http://movie.douban.com/top250?start=" + i);
 //			UrlQueue.addElement("http://movie.douban.com/top250?start=" + 0);

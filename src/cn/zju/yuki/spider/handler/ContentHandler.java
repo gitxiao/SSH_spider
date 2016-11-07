@@ -5,7 +5,7 @@ import cn.zju.yuki.spider.queue.UrlQueue;
 
 public class ContentHandler {
 	public boolean check(FetchedPage fetchedPage){
-		// å¦‚æœæŠ“å–çš„é¡µé¢åŒ…å«åçˆ¬å–å†…å®¹ï¼Œåˆ™å°†å½“å‰URLæ”¾å…¥å¾…çˆ¬å–é˜Ÿåˆ—ï¼Œä»¥ä¾¿é‡æ–°çˆ¬å–
+		// Èç¹û×¥È¡µÄÒ³Ãæ°üº¬·´ÅÀÈ¡ÄÚÈİ£¬Ôò½«µ±Ç°URL·ÅÈë´ıÅÀÈ¡¶ÓÁĞ£¬ÒÔ±ãÖØĞÂÅÀÈ¡
 		if(isAntiScratch(fetchedPage)){
 			UrlQueue.addLastElement(fetchedPage.getUrl());
 			return false;
@@ -27,12 +27,12 @@ public class ContentHandler {
 			return true;
 		}
 		
-		// é¡µé¢å†…å®¹åŒ…å«çš„åçˆ¬å–å†…å®¹
-		if(fetchedPage.getContent().contains("<div>ç¦æ­¢è®¿é—®</div>")){
+		// Ò³ÃæÄÚÈİ°üº¬µÄ·´ÅÀÈ¡ÄÚÈİ
+		if(fetchedPage.getContent().contains("<div>½ûÖ¹·ÃÎÊ</div>")){
 			return true;
 		}
 		
-		//TODO, è¿™é‡Œåº”è¯¥è¿”å›åçˆ¬ç­–ç•¥çš„ä»£ç , å¦åˆ™å†æ¬¡çˆ¬å–æ—¶ä¾ç„¶ä¼šè¢«å±è”½
+		//TODO, ÕâÀïÓ¦¸Ã·µ»Ø·´ÅÀ²ßÂÔµÄ´úÂë, ·ñÔòÔÙ´ÎÅÀÈ¡Ê±ÒÀÈ»»á±»ÆÁ±Î
 		return false;
 	}
 }
