@@ -1,4 +1,4 @@
-package cn.web.spider.utils;
+package com.cfrj.spider.utils;
 
 import java.net.MalformedURLException;
 import java.net.URL;

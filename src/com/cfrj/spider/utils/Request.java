@@ -1,10 +1,11 @@
-package cn.web.spider.utils;
+package com.cfrj.spider.utils;
 
-import cn.web.spider.utils.Experimental;
 
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
+
+import com.cfrj.spider.utils.Experimental;
 
 /**
  *
@@ -111,7 +112,7 @@ public class Request implements Serializable {
     /**
      * The http method of the request. Get for default.
      * @return httpMethod
-     * @see cn.web.spider.utils.HttpConstant.Method
+     * @see com.cfrj.spider.utils.HttpConstant.Method
      * @since 0.5.0
      */
     public String getMethod() {
