@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+
+    <constant name="struts.enable.DynamicMethodInvocation" value="false" />
+    <constant name="struts.devMode" value="false" />
+
+    <package name="ssh" namespace="/" extends="struts-default">
+
+        <!-- <default-action-ref name="index" />
+
+        <global-results>
+            <result name="error">/WEB-INF/jsp/error.jsp</result>
+        </global-results>
+
+        <global-exception-mappings>
+            <exception-mapping exception="java.lang.Exception" result="error"/>
+        </global-exception-mappings> -->
+
+		<!-- 这里action的name对应addProduct.jsp中form表单中的action -->
+		<!-- action类的创建方式有两种, 1:由structs自己创建,2:由spring创建. 下面是第一种方式 -->
+		<!-- 方式1:类名写全路径,action类由Structs自己创建 -->
+		<!-- method={1}中的{1}代表ajaxregister!*中的*,即加入你访问路径是ajaxregister!save.action，
+			  则此刻访问的是该Action中的save方法。同理，如果通配符* == delete,则就访问的是delete方法。
+			  当name中含有多个通配符的时候，method={2} ,就代表第二个通配符，同理以此类推。
+			  这种方式更灵活的简化了struts.xml的配置文件 -->
+		<!--<action name="product_*" class="cn.muke.ssh.action.ProductAction" method="{1}">-->
+		<!-- 方式2:类名写applicationContext.xml中配置的类(bean)id,action类由spring创建 -->
+        <action name="product_*" class="productAction" method="{1}"> 
+            <!-- <result type="redirectAction">
+                <param name="actionName">HelloWorld</param>
+                <param name="namespace">/example</param>
+            </result> -->
+        </action>
+    </package>
+
+    <include file="example.xml"/>
+
+    <!-- Add packages here -->
+
+</struts>
