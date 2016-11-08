@@ -1,13 +1,10 @@
 package com.cfrj.spider;
 
-import org.apache.struts2.ServletActionContext;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.web.context.support.WebApplicationContextUtils;
 
-import cn.muke.ssh.action.ProductAction;
-import cn.muke.ssh.domain.Product;
-import cn.muke.ssh.service.ProductService;
+import cn.muke.ssh.domain.T_News;
+import cn.muke.ssh.service.T_NewsService;
 
 /**
  * ApplicationContext 是 BeanFactory 接口的子接口，它增强了 BeanFactory 的功能，处于 context 包下。很多时候， ApplicationContext 允许以声明式方式操作容器，无须手动创建。可利用如 ContextLoader 的支持类，在 Web 应用启动时自动创建 ApplicationContext。当然，也可以采用编程方式创建 ApplicationContext。
@@ -48,10 +45,10 @@ public class Test {
 
 	public static void main(String[] args){
 		
-		Product product = new Product(1, "测试", 110.0);
+		T_News t_News = new T_News("测试", 130.0);
 		ApplicationContext ac = new ClassPathXmlApplicationContext("applicationContext.xml");		//加载spring配置文件有3种方式, 注意这三种方式的区别
-		ProductService ps = (ProductService) ac.getBean("productService");
-		ps.save(product);
+		T_NewsService ps = (T_NewsService) ac.getBean("t_NewsService");
+		ps.save(t_News);
 		
 	}
 }

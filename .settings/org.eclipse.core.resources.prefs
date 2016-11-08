@@ -1,5 +1,6 @@
-#Mon Nov 07 14:31:33 CST 2016
+#Mon Nov 07 17:31:55 CST 2016
 eclipse.preferences.version=1
-encoding//WebContent/addProduct.jsp=UTF-8
+encoding//WebContent/addNews.jsp=UTF-8
+encoding//conf/spider.properties=UTF-8
 encoding//src/com/chunfeng/utils/MyUtils.java=UTF-8
 encoding//src/com/chunfeng/utils/ReflectCopy.java=UTF-8

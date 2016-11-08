@@ -42,7 +42,7 @@
 		<!-- 加载hibernate中的映射文件 -->
 		<property name="mappingResources">
 			<list>
-				<value>cn/muke/ssh/domain/Product.hbm.xml</value>
+				<value>cn/muke/ssh/domain/T_News.hbm.xml</value>
 			</list>
 		</property>
 	</bean>
@@ -54,18 +54,18 @@
 		spring 默认scope 是单例模式, 这样只会创建一个Action对象, 每次访问都是同一个Action对象，
 		数据不安全, struts2 是要求 每次次访问 都对应不同的Actionscope="prototype" 
 		可以保证 当有请求的时候 都创建一个Action对象-->
-	<bean id="productAction" class="cn.muke.ssh.action.ProductAction" scope="prototype">
+	<bean id="t_NewsAction" class="cn.muke.ssh.action.T_NewsAction" scope="prototype">
 		<!-- action交给spring管理时, 必须手动注入service -->
-		<property name="productService" ref="productService"></property>
+		<property name="t_NewsService" ref="t_NewsService"></property>
 	</bean>
 	
 	<!-- 配置业务层的类 -->
-	<bean id="productService" class="cn.muke.ssh.service.ProductService">
-		<property name="productDao" ref="productDao"></property>
+	<bean id="t_NewsService" class="cn.muke.ssh.service.T_NewsService">
+		<property name="t_NewsDao" ref="t_NewsDao"></property>
 	</bean>
 
 	<!-- 配置dao的类 -->
-	<bean id="productDao" class="cn.muke.ssh.dao.ProductDao">
+	<bean id="t_NewsDao" class="cn.muke.ssh.dao.T_NewsDao">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
 	

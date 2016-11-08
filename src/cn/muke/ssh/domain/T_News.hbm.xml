@@ -4,8 +4,8 @@
     "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
     
 <hibernate-mapping>
-    <class name="cn.muke.ssh.domain.Product" table="Product" schema="dbo" catalog="cfesf">
-        <id name="pid" type="java.lang.Integer">
+    <class name="cn.muke.ssh.domain.T_News" table="T_News" schema="dbo" catalog="spider">
+        <id name="id" type="java.lang.Integer">
             <column name="id" />
             <generator class="native" />
         </id>

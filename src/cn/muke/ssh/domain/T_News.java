@@ -1,26 +1,25 @@
 package cn.muke.ssh.domain;
 
-public class Product {
+public class T_News {
 	
-	private Integer pid;
+	private Integer id;
 	private String pname;
 	private Double price;
 	
-	public Product(){
+	public T_News(){
 		
 	}
 	
-	public Product(Integer pid, String pname, Double price) {
+	public T_News(String pname, Double price) {
 		super();
-		this.pid = pid;
 		this.pname = pname;
 		this.price = price;
 	}
-	public Integer getPid() {
-		return pid;
+	public Integer getId() {
+		return id;
 	}
-	public void setPid(Integer pid) {
-		this.pid = pid;
+	public void setId(Integer id) {
+		this.id = id;
 	}
 	public String getPname() {
 		return pname;

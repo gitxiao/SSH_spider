@@ -8,16 +8,16 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>保存商品</h1>
+	<h1>保存新闻</h1>
 	<!-- 这里的action对应struts.xml中配置的action,save对应该action相关类中的方法  theme="simple"表示jsp页面的样式不受struts标签影响 -->
-	<s:form action="product_save" method="post" namespace="/" theme="simple">
+	<s:form action="t_News_save" method="post" namespace="/" theme="simple">
 		<table border="1" width="400">
 			<tr>
-				<td>商品名称</td>
+				<td>标题</td>
 				<td><s:textfield name="pname"></s:textfield></td>
 			</tr>
 			<tr>
-				<td>商品价格</td>
+				<td>内容</td>
 				<td><s:textfield name="price"></s:textfield></td>
 			</tr>
 			<tr>

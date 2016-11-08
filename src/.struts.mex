@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Struts2Diagram version="2.0">
   <package name="ssh" location="10,10" size="180,70">
-    <action name="product_*" location="15,23" size="150,40" />
+    <action name="t_News_*" location="15,23" size="150,40" />
   </package>
   <include file="example.xml" location="25,170" size="150,30" />
 </Struts2Diagram>

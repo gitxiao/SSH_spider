@@ -7,8 +7,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
-import cn.muke.ssh.domain.Product;
-import cn.muke.ssh.service.ProductService;
+import cn.muke.ssh.domain.T_News;
+import cn.muke.ssh.service.T_NewsService;
 
 import com.cfrj.spider.model.SpiderParams;
 import com.cfrj.spider.queue.UrlQueue;
