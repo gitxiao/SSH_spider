@@ -19,6 +19,8 @@ import org.apache.http.params.HttpConnectionParams;
 import org.apache.http.params.HttpParams;
 import org.apache.http.util.EntityUtils;
 
+import cn.muke.ssh.domain.T_News;
+
 import com.cfrj.spider.model.FetchedPage;
 import com.cfrj.spider.queue.UrlQueue;
 import com.cfrj.spider.queue.VisitedUrlQueue;
@@ -53,7 +55,7 @@ public class PageFetcher {
 	 * @return
 	 * 超链接正则:<a[\s\S]+?</a>
 	 */
-	public FetchedPage getContentFromUrl(String urlStr){
+	public synchronized FetchedPage getContentFromUrl(T_News tNews){
 		URL url = null;
 		HttpURLConnection conn = null;  
 		InputStreamReader isr = null;
@@ -62,6 +64,7 @@ public class PageFetcher {
 		String defaultEncode = "gb2312";
 		String encode = null;
 		String urlHeader = null;
+		String urlStr = tNews.getUrl();
 		try {
 			int index = urlStr.indexOf("//");
 			url = new URL(urlStr);
@@ -97,7 +100,7 @@ public class PageFetcher {
 			// 因请求超时等问题产生的异常，将URL放回待抓取队列，重新爬取
 			e.printStackTrace();
 			Log.info(">> Put back url: " + url);
-			VisitedUrlQueue.addElementWithException(urlStr,"异常");
+			VisitedUrlQueue.addElementWithException(tNews,"异常");
 //			UrlQueue.addLastElement(urlStr);			//TODO 重新放回队列时应该计数,否则如果一直有异常,会无限重新爬取
 		} finally{
 			try {
@@ -113,7 +116,7 @@ public class PageFetcher {
 				e.printStackTrace();
 			}
 		}
-		return new FetchedPage(urlHeader,urlStr, sb.toString(), 1);
+		return new FetchedPage(urlHeader,tNews, sb.toString(), 1);
 	}
 	
 	/**
@@ -252,7 +255,10 @@ public class PageFetcher {
 	 }     
 	      
 	 //辅助函数     
-	 private String findCharset(String line) {    
+	 private String findCharset(String line) { 
+		 if(line == null){
+			 return null;
+		 }
 //		 System.out.println("findCharset line = " + line);
 	     int x = line.indexOf("charset=");     
 	     int y = line.lastIndexOf('\"');     

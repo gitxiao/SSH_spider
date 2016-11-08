@@ -1,6 +1,4 @@
 package com.cfrj.spider.parser;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -41,7 +39,7 @@ public class ContentParser {
 //		System.out.println("fetchedPage.getUrl() :" + fetchedPage.getUrl());
 //		System.out.println("标题:" + title + ",elemTitle.get(0) = " + elemTitle.get(0));
 		
-		VisitedUrlQueue.addElement(fetchedPage.getUrl(),title);			//网页添加到爬取结果页面,TODO 持久化工作
+		VisitedUrlQueue.addElement(fetchedPage.gettNews(),title);			//网页添加到爬取结果页面,TODO 持久化工作
 		
 		
 //		Element elemContent = doc.getElementById("content");
@@ -66,7 +64,7 @@ public class ContentParser {
 //				System.out.println("urlDesc = " + urlDesc);
 //				System.out.println(urlDesc + ":	" + newUrl);
 				if(newUrl != null){								//TODO 监测是否合法url 
-					UrlQueue.addElement(newUrl);
+					UrlQueue.addElement(newUrl,fetchedPage.gettNews().getDepth() + 1);
 				}
 			}
 			
@@ -121,7 +119,7 @@ public class ContentParser {
 		if(newUrl != null){
 			newUrl = newUrl.trim();
 			if(newUrl.contains("http://pmm.people.com.cn/main/s?user=people|2016people|D_icon_left&db=people&border=0&local=yes")){
-				System.out.println("fetchedPage.getUrl() = " + fetchedPage.getUrl());
+				System.out.println("fetchedPage.getUrl() = " + fetchedPage.gettNews().getUrl());
 				System.out.println("aLink = " + aLink);
 				System.out.println("href = " + href);
 				System.out.println("newUrl = " + newUrl);

@@ -1,7 +1,9 @@
 package com.cfrj.spider.model;
 
+import cn.muke.ssh.domain.T_News;
+
 public class FetchedPage {
-	private String url;
+	private T_News tNews;
 	private String urlHeader;
 	private String content;
 	private int statusCode;
@@ -11,22 +13,25 @@ public class FetchedPage {
 		
 	}
 	
-	public FetchedPage(String urlHeader,String url, String content, int statusCode){
+	public FetchedPage(String urlHeader,T_News tNews, String content, int statusCode){
 		this.urlHeader = urlHeader;
-		this.url = url;
+		this.tNews = tNews;
 		this.content = content;
 		this.statusCode = statusCode;
 	}
 	
-	public String getUrl() {
-		return url;
+	public String getUrl(){
+		return gettNews().getUrl();
+	}
+	
+	public T_News gettNews() {
+		return tNews;
 	}
 
-	public void setUrl(String url) {
-		this.url = url;
+	public void settNews(T_News tNews) {
+		this.tNews = tNews;
 	}
-	
-	
+
 	public String getUrlHeader() {
 		return urlHeader;
 	}

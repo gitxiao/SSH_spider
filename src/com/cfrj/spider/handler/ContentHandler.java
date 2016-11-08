@@ -8,7 +8,7 @@ public class ContentHandler {
 	public boolean check(FetchedPage fetchedPage){
 		// 如果抓取的页面包含反爬取内容，则将当前URL放入待爬取队列，以便重新爬取
 		if(isAntiScratch(fetchedPage)){
-			UrlQueue.addLastElement(fetchedPage.getUrl());
+			UrlQueue.addLastElement(fetchedPage.gettNews());
 			return false;
 		}
 		

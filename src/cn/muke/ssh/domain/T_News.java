@@ -14,6 +14,10 @@ public class T_News {
 	public T_News(){
 		
 	}
+	public T_News(String url,Integer depth){
+		this.url = url;
+		this.depth = depth;
+	}
 	public T_News(String url, String title, Date pubDate, String keyword,Integer depth) {
 		super();
 		this.url = url;

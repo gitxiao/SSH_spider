@@ -7,8 +7,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
-import cn.muke.ssh.domain.T_News;
-import cn.muke.ssh.service.T_NewsService;
 
 import com.cfrj.spider.model.SpiderParams;
 import com.cfrj.spider.queue.UrlQueue;
@@ -60,24 +58,18 @@ public class SpiderStarter {
 	 * 准备初始的爬取链接
 	 */
 	private static void initializeQueue(){
-		// 例如，需要抓取豆瓣TOP 250的电影信息，根据链接规则生成URLs放入带抓取队列
-//		for(int i = 0; i < 250; i += 25){
-//			UrlQueue.addElement("http://movie.douban.com/top250?start=" + i);
-//			UrlQueue.addElement("http://movie.douban.com/top250?start=" + 0);
-//		}
 		
-//		UrlQueue.addElement("http://movie.douban.com/top250?start=" + 0);
+		UrlQueue.addElement("http://www.hebei.com.cn",0);
+		UrlQueue.addElement("http://jizhou.hebei.com.cn",0);
+		UrlQueue.addElement("http://www.hengshui.gov.cn",0);
+//		UrlQueue.addElement("http://www.54hs.com",0);
+//		UrlQueue.addElement("http://www.hsnsbd.gov.cn",0);
+//		UrlQueue.addElement("http://www.mwr.gov.cn",0);
+//		UrlQueue.addElement("http://www.hebwater.gov.cn",0);
+//		UrlQueue.addElement("http://www.xjslt.gov.cn",0);
+//		UrlQueue.addElement("http://www.xzwater.gov.cn",0);
+//		UrlQueue.addElement("http://www.hebei.com.cn",0);
+//		UrlQueue.addElement("http://www.qhsl.gov.cn",0);
 		
-		UrlQueue.addElement("http://www.hebei.com.cn");
-		UrlQueue.addElement("http://jizhou.hebei.com.cn");
-		UrlQueue.addElement("http://www.hengshui.gov.cn");
-		UrlQueue.addElement("http://www.54hs.com");
-		UrlQueue.addElement("http://www.hsnsbd.gov.cn");
-		UrlQueue.addElement("http://www.mwr.gov.cn");
-		UrlQueue.addElement("http://www.hebwater.gov.cn");
-		UrlQueue.addElement("http://www.xjslt.gov.cn");
-		UrlQueue.addElement("http://www.xzwater.gov.cn");
-		UrlQueue.addElement("http://www.hebei.com.cn");
-		UrlQueue.addElement("http://www.qhsl.gov.cn");
 	}
 }

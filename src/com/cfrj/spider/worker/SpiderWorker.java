@@ -1,10 +1,8 @@
 package com.cfrj.spider.worker;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.logging.Logger;
+
+import cn.muke.ssh.domain.T_News;
 
 import com.cfrj.spider.fetcher.PageFetcher;
 import com.cfrj.spider.handler.ContentHandler;
@@ -32,6 +30,7 @@ public class SpiderWorker implements Runnable{
 		this.store = new DataStorage();
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Override
 	public void run() {
 		// 登录
@@ -41,40 +40,45 @@ public class SpiderWorker implements Runnable{
 		// 注： 当队列内容为空时，也不代表爬取任务已经结束了
 		//     因为有可能是UrlQueue暂时空，其他worker线程还没有将新的URL放入队列
 		//	        所以，这里可以做个等待时间，再进行抓取（二次机会）
-		while(!UrlQueue.isEmpty()){
-			// 从待抓取队列中拿URL
-			String url = UrlQueue.outElement();
-			
-			//拿到的url判断是否已经存在于已抓取队列,如果存在,则跳过
-			if(VisitedUrlQueue.isContains(url)){
-				continue;
-			}
-//			System.out.println("爬取url------------------------------------------------------:" + url);
-			
-			// 抓取URL指定的页面，并返回状态码和页面内容构成的FetchedPage对象
-			FetchedPage fetchedPage = fetcher.getContentFromUrl(url);
-			
-			// 检查爬取页面的合法性，爬虫是否被禁止
-			if(!handler.check(fetchedPage)){
-				// 切换IP等操作
-				// TODO
+		
+		try {
+			while(!UrlQueue.isEmpty()){
+				// 从待抓取队列中拿URL
+				T_News tNews = UrlQueue.outElement();
 				
-				Log.info("爬虫被禁止: Spider-" + threadIndex + ": switch IP to ");
-				continue;
+				//拿到的url判断是否已经存在于已抓取队列,如果存在,则跳过
+				if(VisitedUrlQueue.isContains(tNews.getUrl())){
+					continue;
+				}
+//			System.out.println("爬取url------------------------------------------------------:" + url);
+				
+				// 抓取URL指定的页面，并返回状态码和页面内容构成的FetchedPage对象
+				FetchedPage fetchedPage = fetcher.getContentFromUrl(tNews);
+				
+				// 检查爬取页面的合法性，爬虫是否被禁止
+				if(!handler.check(fetchedPage)){
+					// 切换IP等操作
+					// TODO
+					
+					Log.info("爬虫被禁止: Spider-" + threadIndex + ": switch IP to ");
+					continue;
+				}
+				
+				// 解析页面，获取目标数据
+				Object targetData = parser.parse(fetchedPage);
+				
+				// 存储目标数据到数据存储（如DB）、存储已爬取的Url到VisitedUrlQueue
+				store.store(targetData);
+				
+				// delay
+				try {
+					Thread.sleep(SpiderParams.DEYLAY_TIME);			//等待新抓取的url进入队列
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
 			}
-			
-			// 解析页面，获取目标数据
-			Object targetData = parser.parse(fetchedPage);
-			
-			// 存储目标数据到数据存储（如DB）、存储已爬取的Url到VisitedUrlQueue
-			store.store(targetData);
-			
-			// delay
-			try {
-				Thread.sleep(SpiderParams.DEYLAY_TIME);			//等待新抓取的url进入队列
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 		
 		fetcher.close();
