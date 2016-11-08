@@ -66,6 +66,7 @@ public class PageFetcher {
 		String urlHeader = null;
 		String urlStr = tNews.getUrl();
 		try {
+			
 			int index = urlStr.indexOf("//");
 			url = new URL(urlStr);
 			urlHeader = urlStr.substring(0,index + 2) + url.getHost();
@@ -76,7 +77,16 @@ public class PageFetcher {
 //			encode = getCharset(urlStr,urlHeader);
 		    
 		    isr = new InputStreamReader(url.openStream(),Charset.forName(defaultEncode));
+		    if("http://www.gov.cn/".equals(urlStr)){
+		    	printLine = true;
+		    }else{
+		    	printLine = false;
+		    }
 			encode = getCharset(conn,isr,urlHeader);
+			if(printLine){
+				System.out.println("encode = " + encode);
+			}
+			
 //			System.out.println("urlStr,encode = " + urlStr + ", " + encode);
 			isr.close();
 			isr = null;
@@ -159,6 +169,7 @@ public class PageFetcher {
 //	}
 	
 	
+	
 	/**
 	 * 获取网页的编码格式
 	 * 
@@ -177,9 +188,9 @@ public class PageFetcher {
 		         line = reader.readLine();     
 		         while(line != null) {     
 //		        	 System.out.println("line = " + line);
-		             if(line.contains("Content-Type") || line.contains("content-Type")) {    
+//		             if(line.contains("Content-Type") || line.contains("content-Type")) {    
 		                 result = findCharset(line);     
-		             } 
+//		             } 
 		             if(result != null){
 		            	 break; 
 		             }else if(line.contains("<iframe")){
@@ -228,9 +239,9 @@ public class PageFetcher {
 		         line = reader.readLine();     
 		         while(line != null) {     
 //		        	 System.out.println("line = " + line);
-		             if(line.contains("Content-Type") || line.contains("content-Type")) {    
+//		             if(line.contains("charset=") || line.contains("Charset=") || line.contains("Content-Type") || line.contains("content-Type")) {    
 		                 result = findCharset(line);     
-		             } 
+//		             } 
 		             if(result != null){
 		            	 break; 
 		             }else if(line.contains("<iframe")){
@@ -254,20 +265,33 @@ public class PageFetcher {
 		 return result;     
 	 }     
 	      
+	boolean printLine = false;
 	 //辅助函数     
 	 private String findCharset(String line) { 
+		 if(printLine){
+			 System.out.println("findCharset line = " + line);
+		 }
 		 if(line == null){
 			 return null;
 		 }
 //		 System.out.println("findCharset line = " + line);
 	     int x = line.indexOf("charset=");     
-	     int y = line.lastIndexOf('\"');     
-	     if(x < 0)     
-	         return null;     
-	     else if(y >= 0)    
-	         return line.substring(x + 8, y);    
+	     if(x < 0){
+	    	 x = line.indexOf("Charset=");
+	     }
+	     if(x < 0){
+	    	 return null;
+	     }
+	     
+//	     int y = line.lastIndexOf('\"');     
+	     int y = line.indexOf('\"',x + 9);     
+	     
+	     String encode = null;
+	     if(y >= 0)    
+	    	 encode = line.substring(x + 8, y);    
 	     else  
-	         return line.substring(x + 8);   
+	    	 encode = line.substring(x + 8);
+	     return encode.replace("\"", "");
 	}
 	 
 	private String findIframeUrl(String link,String line){
