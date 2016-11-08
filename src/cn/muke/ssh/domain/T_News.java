@@ -1,19 +1,26 @@
 package cn.muke.ssh.domain;
 
+import java.util.Date;
+
 public class T_News {
 	
 	private Integer id;
-	private String pname;
-	private Double price;
+	private String url;
+	private String title;
+	private Date pubDate;
+	private String keyword;
+	private Integer depth;
 	
 	public T_News(){
 		
 	}
-	
-	public T_News(String pname, Double price) {
+	public T_News(String url, String title, Date pubDate, String keyword,Integer depth) {
 		super();
-		this.pname = pname;
-		this.price = price;
+		this.url = url;
+		this.title = title;
+		this.pubDate = pubDate;
+		this.keyword = keyword;
+		this.depth = depth;
 	}
 	public Integer getId() {
 		return id;
@@ -21,18 +28,37 @@ public class T_News {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	public String getPname() {
-		return pname;
+	public String getUrl() {
+		return url;
 	}
-	public void setPname(String pname) {
-		this.pname = pname;
+	public void setUrl(String url) {
+		this.url = url;
 	}
-	public Double getPrice() {
-		return price;
+	public String getTitle() {
+		return title;
 	}
-	public void setPrice(Double price) {
-		this.price = price;
+	public void setTitle(String title) {
+		this.title = title;
 	}
+	public Date getPubDate() {
+		return pubDate;
+	}
+	public void setPubDate(Date pubDate) {
+		this.pubDate = pubDate;
+	}
+	public String getKeyword() {
+		return keyword;
+	}
+	public void setKeyword(String keyword) {
+		this.keyword = keyword;
+	}
+	public Integer getDepth() {
+		return depth;
+	}
+	public void setDepth(Integer depth) {
+		this.depth = depth;
+	}
+	
 	
 	
 }

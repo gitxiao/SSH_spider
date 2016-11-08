@@ -1,5 +1,7 @@
 package com.cfrj.spider;
 
+import java.util.Date;
+
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -45,7 +47,7 @@ public class Test {
 
 	public static void main(String[] args){
 		
-		T_News t_News = new T_News("测试", 130.0);
+		T_News t_News = new T_News("url","title",new Date(),"keyword",1);
 		ApplicationContext ac = new ClassPathXmlApplicationContext("applicationContext.xml");		//加载spring配置文件有3种方式, 注意这三种方式的区别
 		T_NewsService ps = (T_NewsService) ac.getBean("t_NewsService");
 		ps.save(t_News);

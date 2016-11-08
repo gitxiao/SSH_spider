@@ -9,8 +9,11 @@
             <column name="id" />
             <generator class="native" />
         </id>
-        <property name="pname" column="pname" length="20" type="java.lang.String"/>
-        <property name="price" column="price" type="java.lang.Double"/>
+        <property name="url" column="url" length="200" type="java.lang.String"/>
+        <property name="title" column="title" length="50" type="java.lang.String"/>
+        <property name="keyword" column="keyword" length="50" type="java.lang.String"/>
+        <property name="pubDate" column="pubDate" length="20" type="java.util.Date"/>
+        <property name="depth" column="depth" type="java.lang.Integer"/>
         
     </class>
 </hibernate-mapping>
