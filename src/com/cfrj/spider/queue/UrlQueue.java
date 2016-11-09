@@ -32,10 +32,6 @@ public class UrlQueue {
 		newsMap.put(tNews.getUrl(), tNews);
 	}
 	
-	public synchronized static void addLastElement(String url,int depth){
-		urlQueue.addLast(url);
-		newsMap.put(url, new T_News(url,depth));
-	}
 	
 	public synchronized static T_News outElement(){
 //		System.out.println("outElement È¡³öÇ°:");

@@ -77,7 +77,7 @@ public class PageFetcher {
 //			encode = getCharset(urlStr,urlHeader);
 		    
 		    isr = new InputStreamReader(url.openStream(),Charset.forName(defaultEncode));
-		    if("http://www.gov.cn/".equals(urlStr)){
+		    if("http://www.baidu.com".equals(urlStr)){
 		    	printLine = true;
 		    }else{
 		    	printLine = false;
@@ -220,9 +220,6 @@ public class PageFetcher {
 	public String getCharset(String link,String urlHeader) {   
 		  String result = null;     
 		  HttpURLConnection conn = null;   
-		  if(link.equals("http://vipmail.hebei.com.cn/cgi-bin/web2cgi/index.cgi")){
-//			  System.out.println("link = " + link);
-		  }
 		  String line = null;
 		  try {     
 		      URL url = new URL(link);     
@@ -274,8 +271,8 @@ public class PageFetcher {
 		 if(line == null){
 			 return null;
 		 }
-//		 System.out.println("findCharset line = " + line);
-	     int x = line.indexOf("charset=");     
+		 String charset = "charset=";
+		 int x = line.indexOf("charset=");     
 	     if(x < 0){
 	    	 x = line.indexOf("Charset=");
 	     }
@@ -283,16 +280,22 @@ public class PageFetcher {
 	    	 return null;
 	     }
 	     
-//	     int y = line.lastIndexOf('\"');     
-	     int y = line.indexOf('\"',x + 9);     
+	     int y0 = line.indexOf('"',x + charset.length() + 1);     
+	     int y1 = line.indexOf('/',x + charset.length() + 1);     
+	     int y2 = line.indexOf('>',x + charset.length() + 1);     
+	     int y3 = line.indexOf(' ',x + charset.length() + 1);     
+	     
+	     int y = getMinNum(new int[]{y0,y1,y2,y3});
 	     
 	     String encode = null;
 	     if(y >= 0)    
-	    	 encode = line.substring(x + 8, y);    
+	    	 encode = line.substring(x + charset.length(), y);    
 	     else  
-	    	 encode = line.substring(x + 8);
+	    	 encode = line.substring(x + charset.length());
 	     return encode.replace("\"", "");
 	}
+	 
+	
 	 
 	private String findIframeUrl(String link,String line){
 //		System.out.println("findIframeUrl line = " + line);
@@ -343,5 +346,20 @@ public class PageFetcher {
 		
 //		System.out.println("location = " + location);
 		return location;
+	}
+	
+	/**
+	 * 从数组中拿到大于0并且最小的数
+	 * @param nums
+	 * @return
+	 */
+	public int getMinNum(int[] nums){
+		int temp = nums[0];
+		for (int i = 1; i < nums.length; i++) {
+			if(0 < nums[i] && nums[i] < temp){
+				temp = nums[i];
+			}
+		}
+		return temp;
 	}
 }

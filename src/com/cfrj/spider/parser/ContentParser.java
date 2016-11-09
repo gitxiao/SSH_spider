@@ -63,6 +63,12 @@ public class ContentParser {
 //				System.out.println("newUrl = " + newUrl);
 //				System.out.println("urlDesc = " + urlDesc);
 //				System.out.println(urlDesc + ":	" + newUrl);
+				
+				//http://www.mohurd.gov.cn" style=
+				if("http://www.mohurd.gov.cn\" style=".equals(newUrl)){
+					System.out.println("fetchedPage.gettNews().getUrl() = " + fetchedPage.gettNews().getUrl());
+					System.out.println("fetchedPage.getContent() = " + fetchedPage.getContent());
+				}
 				if(newUrl != null){								//TODO º‡≤‚ «∑Ò∫œ∑®url 
 					UrlQueue.addElement(newUrl,fetchedPage.gettNews().getDepth() + 1);
 				}
@@ -99,7 +105,7 @@ public class ContentParser {
 	 */
 	private String getUrlFromALink(FetchedPage fetchedPage,String aLink){
 		String newUrl = null;
-		Pattern patternHref = Pattern.compile("href=\"(.+?)\"");
+		Pattern patternHref = Pattern.compile("href=\"(.*?)\"");
 		Matcher matcherHref = patternHref.matcher(aLink);
 		String href = null;
 		if(matcherHref.find()){
@@ -118,21 +124,21 @@ public class ContentParser {
 		
 		if(newUrl != null){
 			newUrl = newUrl.trim();
-			if(newUrl.contains("http://pmm.people.com.cn/main/s?user=people|2016people|D_icon_left&db=people&border=0&local=yes")){
-				System.out.println("fetchedPage.getUrl() = " + fetchedPage.gettNews().getUrl());
-				System.out.println("aLink = " + aLink);
-				System.out.println("href = " + href);
-				System.out.println("newUrl = " + newUrl);
-			}
-			if(!newUrl.startsWith("http") || newUrl.substring(1).contains("http")){
-				System.out.println("aLink = " + aLink);
-				System.out.println("href = " + href);
-				System.out.println("newUrl.startsWith(\"http\") = " + newUrl.startsWith("http"));
-				System.out.println("newUrl.substring(1) = " + newUrl.substring(1));
-				System.out.println("newUrl.substring(1).contains(\"http\") = " + newUrl.substring(1).contains("http"));
-				System.out.println("fetchedPage.getUrl() = " + fetchedPage.getUrl());
-				System.out.println("newUrl = " + newUrl);
-			}
+//			if(newUrl.contains("http://pmm.people.com.cn/main/s?user=people|2016people|D_icon_left&db=people&border=0&local=yes")){
+//				System.out.println("fetchedPage.getUrl() = " + fetchedPage.gettNews().getUrl());
+//				System.out.println("aLink = " + aLink);
+//				System.out.println("href = " + href);
+//				System.out.println("newUrl = " + newUrl);
+//			}
+//			if(!newUrl.startsWith("http") || newUrl.substring(1).contains("http")){
+//				System.out.println("aLink = " + aLink);
+//				System.out.println("href = " + href);
+//				System.out.println("newUrl.startsWith(\"http\") = " + newUrl.startsWith("http"));
+//				System.out.println("newUrl.substring(1) = " + newUrl.substring(1));
+//				System.out.println("newUrl.substring(1).contains(\"http\") = " + newUrl.substring(1).contains("http"));
+//				System.out.println("fetchedPage.getUrl() = " + fetchedPage.getUrl());
+//				System.out.println("newUrl = " + newUrl);
+//			}
 		}
 		return newUrl;
 	}

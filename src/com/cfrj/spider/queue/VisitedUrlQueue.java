@@ -30,6 +30,7 @@ public class VisitedUrlQueue {
 	}
 	
 	public static boolean isContains(String url){
+		//TODO 需要查询数据库
 		return visitedPages.containsKey(url) || exceptionPages.containsKey(url);
 	}
 }

@@ -59,9 +59,10 @@ public class SpiderStarter {
 	 */
 	private static void initializeQueue(){
 		
-		UrlQueue.addElement("http://www.hebei.com.cn",0);
-		UrlQueue.addElement("http://jizhou.hebei.com.cn",0);
-		UrlQueue.addElement("http://www.hengshui.gov.cn",0);
+		UrlQueue.addElement("http://www.mohurd.gov.cn",0);
+//		UrlQueue.addElement("http://www.hebei.com.cn",0);
+//		UrlQueue.addElement("http://jizhou.hebei.com.cn",0);
+//		UrlQueue.addElement("http://www.hengshui.gov.cn",0);
 //		UrlQueue.addElement("http://www.54hs.com",0);
 //		UrlQueue.addElement("http://www.hsnsbd.gov.cn",0);
 //		UrlQueue.addElement("http://www.mwr.gov.cn",0);
