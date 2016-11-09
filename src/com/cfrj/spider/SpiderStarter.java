@@ -43,6 +43,7 @@ public class SpiderStarter {
 			// 从配置文件中读取参数
 			SpiderParams.WORKER_NUM = Integer.parseInt(properties.getProperty("spider.threadNum"));
 			SpiderParams.DEYLAY_TIME = Integer.parseInt(properties.getProperty("spider.fetchDelay"));
+			SpiderParams.MAX_DEPTH = Integer.parseInt(properties.getProperty("spider.pageMaxDepth"));
 
 			in.close();
 		} 
@@ -60,17 +61,17 @@ public class SpiderStarter {
 	private static void initializeQueue(){
 		
 		UrlQueue.addElement("http://www.mohurd.gov.cn",0);
-//		UrlQueue.addElement("http://www.hebei.com.cn",0);
-//		UrlQueue.addElement("http://jizhou.hebei.com.cn",0);
-//		UrlQueue.addElement("http://www.hengshui.gov.cn",0);
-//		UrlQueue.addElement("http://www.54hs.com",0);
-//		UrlQueue.addElement("http://www.hsnsbd.gov.cn",0);
-//		UrlQueue.addElement("http://www.mwr.gov.cn",0);
-//		UrlQueue.addElement("http://www.hebwater.gov.cn",0);
-//		UrlQueue.addElement("http://www.xjslt.gov.cn",0);
-//		UrlQueue.addElement("http://www.xzwater.gov.cn",0);
-//		UrlQueue.addElement("http://www.hebei.com.cn",0);
-//		UrlQueue.addElement("http://www.qhsl.gov.cn",0);
+		UrlQueue.addElement("http://www.hebei.com.cn",0);
+		UrlQueue.addElement("http://jizhou.hebei.com.cn",0);
+		UrlQueue.addElement("http://www.hengshui.gov.cn",0);
+		UrlQueue.addElement("http://www.54hs.com",0);
+		UrlQueue.addElement("http://www.hsnsbd.gov.cn",0);
+		UrlQueue.addElement("http://www.mwr.gov.cn",0);
+		UrlQueue.addElement("http://www.hebwater.gov.cn",0);
+		UrlQueue.addElement("http://www.xjslt.gov.cn",0);
+		UrlQueue.addElement("http://www.xzwater.gov.cn",0);
+		UrlQueue.addElement("http://www.hebei.com.cn",0);
+		UrlQueue.addElement("http://www.qhsl.gov.cn",0);
 		
 	}
 }

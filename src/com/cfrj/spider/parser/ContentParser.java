@@ -50,6 +50,10 @@ public class ContentParser {
 			// 解析并获取目标数据
 			// TODO
 		
+
+		
+		// 根据当前页面和URL获取下一步爬取的URLs
+		// TODO
 			String newUrl = null;
 			String urlDesc = null;
 			String aLink = null;
@@ -69,7 +73,7 @@ public class ContentParser {
 					System.out.println("fetchedPage.gettNews().getUrl() = " + fetchedPage.gettNews().getUrl());
 					System.out.println("fetchedPage.getContent() = " + fetchedPage.getContent());
 				}
-				if(newUrl != null){								//TODO 监测是否合法url 
+				if(newUrl != null){								
 					UrlQueue.addElement(newUrl,fetchedPage.gettNews().getDepth() + 1);
 				}
 			}
@@ -77,8 +81,6 @@ public class ContentParser {
 
 //		}
 		
-		// 根据当前页面和URL获取下一步爬取的URLs
-		// TODO
 		
 		return targetObject; 
 	}

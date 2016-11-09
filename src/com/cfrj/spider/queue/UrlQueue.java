@@ -3,6 +3,8 @@ package com.cfrj.spider.queue;
 import java.util.HashMap;
 import java.util.LinkedList;
 
+import com.cfrj.spider.model.SpiderParams;
+
 import cn.muke.ssh.domain.T_News;
 
 public class UrlQueue {
@@ -15,7 +17,7 @@ public class UrlQueue {
 	 * @param url
 	 */
 	public synchronized static void addElement(String url,int depth){
-		if(!isContains(url)){
+		if(!isContains(url) && depth <= SpiderParams.MAX_DEPTH){
 			urlQueue.add(url);
 			newsMap.put(url, new T_News(url,depth));
 //			System.out.println("UrlQueue addElement ´ýÅÀÈ¡url: " + url);
