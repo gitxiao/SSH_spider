@@ -5,7 +5,7 @@ import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 import cn.muke.ssh.domain.T_News;
 
 /**
- * 商品管理的dao类
+ * 页面管理的dao类
  * @author Cfrjkj
  *
  */

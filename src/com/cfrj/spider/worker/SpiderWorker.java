@@ -19,7 +19,6 @@ public class SpiderWorker implements Runnable{
 	private PageFetcher fetcher;
 	private ContentHandler handler;
 	private ContentParser parser;
-	private DataStorage store;
 	private int threadIndex;
 	
 	public SpiderWorker(int threadIndex){
@@ -27,7 +26,6 @@ public class SpiderWorker implements Runnable{
 		this.fetcher = new PageFetcher();
 		this.handler = new ContentHandler();
 		this.parser = new ContentParser();
-		this.store = new DataStorage();
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -69,7 +67,7 @@ public class SpiderWorker implements Runnable{
 				
 				// 存储目标数据到数据存储（如DB）、存储已爬取的Url到VisitedUrlQueue
 				if(targetData != null){
-					store.store(targetData);
+					DataStorage.saveNews(targetData);
 				}
 				
 				// delay

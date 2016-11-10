@@ -12,8 +12,6 @@ import com.cfrj.spider.model.SpiderParams;
 import com.cfrj.spider.queue.UrlQueue;
 import com.cfrj.spider.worker.SpiderWorker;
 
-
-
 public class SpiderStarter {
 
 	public static void main(String[] args){

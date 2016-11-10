@@ -43,11 +43,10 @@
 		<property name="mappingResources">
 			<list>
 				<value>cn/muke/ssh/domain/T_News.hbm.xml</value>
+				<value>cn/muke/ssh/domain/T_Visited.hbm.xml</value>
 			</list>
 		</property>
 	</bean>
-	
-	
 	
 
 	<!-- 配置action的类 
@@ -66,6 +65,21 @@
 
 	<!-- 配置dao的类 -->
 	<bean id="t_NewsDao" class="cn.muke.ssh.dao.T_NewsDao">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	<bean id="t_VisitedAction" class="cn.muke.ssh.action.T_VisitedAction" scope="prototype">
+		<!-- action交给spring管理时, 必须手动注入service -->
+		<property name="t_VisitedService" ref="t_VisitedService"></property>
+	</bean>
+	
+	<!-- 配置业务层的类 -->
+	<bean id="t_VisitedService" class="cn.muke.ssh.service.T_VisitedService">
+		<property name="t_VisitedDao" ref="t_VisitedDao"></property>
+	</bean>
+
+	<!-- 配置dao的类 -->
+	<bean id="t_VisitedDao" class="cn.muke.ssh.dao.T_VisitedDao">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
 	

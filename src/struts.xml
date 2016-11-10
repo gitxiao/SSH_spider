@@ -35,6 +35,12 @@
                 <param name="namespace">/example</param>
             </result> -->
         </action>
+        <action name="t_Visited_*" class="t_VisitedAction" method="{1}"> 
+            <!-- <result type="redirectAction">
+                <param name="actionName">HelloWorld</param>
+                <param name="namespace">/example</param>
+            </result> -->
+        </action>
     </package>
 
     <include file="example.xml"/>
