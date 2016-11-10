@@ -7,7 +7,7 @@
     <class name="cn.muke.ssh.domain.T_News" table="T_News" schema="dbo" catalog="spider">
         <id name="id" type="java.lang.Integer">
             <column name="id" />
-            <generator class="native" />
+            <generator class="identity" />
         </id>
         <property name="url" column="url" length="200" type="java.lang.String"/>
         <property name="title" column="title" length="50" type="java.lang.String"/>

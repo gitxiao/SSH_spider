@@ -65,10 +65,12 @@ public class SpiderWorker implements Runnable{
 				}
 				
 				// 解析页面，获取目标数据
-				Object targetData = parser.parse(fetchedPage);
+				T_News targetData = parser.parse(fetchedPage);
 				
 				// 存储目标数据到数据存储（如DB）、存储已爬取的Url到VisitedUrlQueue
-				store.store(targetData);
+				if(targetData != null){
+					store.store(targetData);
+				}
 				
 				// delay
 				try {

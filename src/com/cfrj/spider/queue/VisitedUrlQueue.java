@@ -12,7 +12,7 @@ public class VisitedUrlQueue {
 	private static Map<String,String> exceptionPages = new HashMap<String,String>();
 	
 	public synchronized static void addElement(T_News tNews,String desc){
-		System.out.println("爬取网页: " + desc + "	 " + tNews.getUrl() + ",深度:" + tNews.getDepth());
+		System.out.println("爬取网页: " + desc + "	 " + tNews.getUrl() + ",深度:" + tNews.getDepth() + ",爬取数量:" + size());
 		visitedPages.put(tNews.getUrl(), desc);
 	}
 	

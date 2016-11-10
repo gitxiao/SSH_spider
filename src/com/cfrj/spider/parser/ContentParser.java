@@ -1,4 +1,5 @@
 package com.cfrj.spider.parser;
+import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -6,24 +7,16 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 
+import cn.muke.ssh.domain.T_News;
+
 import com.cfrj.spider.model.FetchedPage;
 import com.cfrj.spider.queue.UrlQueue;
 import com.cfrj.spider.queue.VisitedUrlQueue;
 
 
 public class ContentParser {
-	public Object parse(FetchedPage fetchedPage){
-		Object targetObject = null;
+	public T_News parse(FetchedPage fetchedPage){
 		Document doc = Jsoup.parse(fetchedPage.getContent(),"http://" + fetchedPage.getUrlHeader());
-		
-//        Elements links = doc.getElementsByTag("a"); 
-//        if (!links.isEmpty()) { 
-//            for (Element link : links) { 
-//                String linkHref = link.absUrl("href"); 
-//                String linkText = link.text(); 
-//                System.out.println(linkText + "*:*" + linkHref); 
-//            } 
-//        }
 		
 		String title = getTitle(fetchedPage.getContent());
 		if(title == null || title.equals("")){
@@ -32,6 +25,8 @@ public class ContentParser {
 		}
 		if(title != null){
 			title = this.outTag(title);
+			fetchedPage.gettNews().setTitle(title);
+			System.out.println("title.length = " + title.length());
 		}
 		
 //		System.out.println("fetchedPage.getContent() :" + fetchedPage.getContent());
@@ -41,62 +36,63 @@ public class ContentParser {
 		
 		VisitedUrlQueue.addElement(fetchedPage.gettNews(),title);			//网页添加到爬取结果页面,TODO 持久化工作
 		
-		
 //		Element elemContent = doc.getElementById("content");
 //		String content = elemContent.html();
 		
+		parseUrls(fetchedPage);
+		
 		// 如果当前页面包含目标数据
-//		if(true || containsTargetData(fetchedPage.getUrl(), doc)){
-			// 解析并获取目标数据
+		if(containsTargetData(fetchedPage.getUrl(), doc)){
+			// 解析并获取目标数据并持久化
 			// TODO
-		
-
-		
-		// 根据当前页面和URL获取下一步爬取的URLs
-		// TODO
-			String newUrl = null;
-			String urlDesc = null;
-			String aLink = null;
-			Pattern patternA = Pattern.compile("<a[\\s\\S]+?</a>");
-			Matcher matcherA = patternA.matcher(fetchedPage.getContent());
-			while(matcherA.find()){
-				aLink = matcherA.group();
-				newUrl = getUrlFromALink(fetchedPage,aLink);
-				urlDesc = getDescOfALink(aLink);
-//				System.out.println("aLink = " + aLink);
-//				System.out.println("newUrl = " + newUrl);
-//				System.out.println("urlDesc = " + urlDesc);
-//				System.out.println(urlDesc + ":	" + newUrl);
-				
-				//http://www.mohurd.gov.cn" style=
-				if("http://www.mohurd.gov.cn\" style=".equals(newUrl)){
-					System.out.println("fetchedPage.gettNews().getUrl() = " + fetchedPage.gettNews().getUrl());
-					System.out.println("fetchedPage.getContent() = " + fetchedPage.getContent());
-				}
-				if(newUrl != null){								
-					UrlQueue.addElement(newUrl,fetchedPage.gettNews().getDepth() + 1);
-				}
-			}
-			
-
-//		}
-		
-		
-		return targetObject; 
+			return fetchedPage.gettNews();
+		}else{
+			return null;
+		}
 	}
 	
+	public void parseUrls(FetchedPage fetchedPage){
+		// 根据当前页面和URL获取下一步爬取的URLs
+		// TODO
+		String newUrl = null;
+		String urlDesc = null;
+		String aLink = null;
+		Pattern patternA = Pattern.compile("<a[\\s\\S]+?</a>");
+		Matcher matcherA = patternA.matcher(fetchedPage.getContent());
+		while(matcherA.find()){
+			aLink = matcherA.group();
+			newUrl = getUrlFromALink(fetchedPage,aLink);
+			urlDesc = getDescOfALink(aLink);
+//			System.out.println("aLink = " + aLink);
+//			System.out.println("newUrl = " + newUrl);
+//			System.out.println("urlDesc = " + urlDesc);
+//			System.out.println(urlDesc + ":	" + newUrl);
+			
+			//http://www.mohurd.gov.cn" style=
+			if("http://www.mohurd.gov.cn\" style=".equals(newUrl)){
+				System.out.println("fetchedPage.gettNews().getUrl() = " + fetchedPage.gettNews().getUrl());
+				System.out.println("fetchedPage.getContent() = " + fetchedPage.getContent());
+			}
+			if(newUrl != null){								
+				UrlQueue.addElement(newUrl,fetchedPage.gettNews().getDepth() + 1);
+			}
+		}
+	}
+	
+	Random random = new Random();
 	private boolean containsTargetData(String url, Document contentDoc){
 		// 通过URL判断
 		// TODO
 		
 //		System.out.println(contentDoc.toString());
 		// 通过content判断，比如需要抓取class为grid_view中的内容
-		if(contentDoc.getElementsByClass("grid_view") != null){
-			System.out.println(contentDoc.getElementsByClass("grid_view").toString());
-			return true;
-		}
+//		if(contentDoc.getElementsByClass("grid_view") != null){
+//			System.out.println(contentDoc.getElementsByClass("grid_view").toString());
+//			return true;
+//		}
 		
-		return false;
+		float ran = random.nextFloat();
+		return ran < 0.002;
 	}
 	
 	
