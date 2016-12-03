@@ -21,7 +21,7 @@ public class UrlTest {
 	@Test
 	public void testFindByDuty() throws Exception{
 		 mwsUrl = baseUrl+"/NewsService/";
-	 	 testPost("findNews", "参数1","参数2"); 
+	 	 testPost("findNews", "para","参数3"); 
 //	 	 testPost("t_News_save", "参数1","参数2"); 
 	}
 	
@@ -38,6 +38,7 @@ public class UrlTest {
 			  
 	    ClientResponse response = webResource.type("application/x-www-form-urlencoded").post(ClientResponse.class, formData);
 	    int status = response.getStatus();
+	    System.out.println("status = " + status);
 	    if (status == 200) {
 	    	System.out.println(response.getEntity(String.class));
 	    	status = 0;
@@ -45,7 +46,6 @@ public class UrlTest {
 	    	System.out.println("操作成功！");
 	    	status = 0;
 	    }else {
-	    	System.out.println("status = " + status);
 		}
 	    
 	    Assert.assertEquals(0, status);

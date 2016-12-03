@@ -1,6 +1,7 @@
 package cn.muke.ssh.service;
 
 import javax.ejb.Stateless;
+import javax.ws.rs.FormParam;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -46,7 +47,7 @@ public class NewsService {
 	@POST
 	@Path("findNews")
 	@Produces("application/json")
-	public void findNews(String para){
+	public void findNews(@FormParam("para") String para){
 		System.out.println("NewsService findNews para = " + para);
 	}
 }

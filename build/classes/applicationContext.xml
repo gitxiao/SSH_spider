@@ -59,7 +59,7 @@
 	</bean>
 	
 	<!-- 配置业务层的类 -->
-	<bean id="t_NewsService" class="cn.muke.ssh.service.T_NewsService">
+	<bean id="t_NewsService" class="cn.muke.ssh.service.NewsService">
 		<property name="t_NewsDao" ref="t_NewsDao"></property>
 	</bean>
 
@@ -74,7 +74,7 @@
 	</bean>
 	
 	<!-- 配置业务层的类 -->
-	<bean id="t_VisitedService" class="cn.muke.ssh.service.T_VisitedService">
+	<bean id="t_VisitedService" class="cn.muke.ssh.service.VisitedService">
 		<property name="t_VisitedDao" ref="t_VisitedDao"></property>
 	</bean>
 
@@ -105,8 +105,9 @@
     
     <!-- 添加spring对jersey的支持  start-->
     <bean id="newsService" class="cn.muke.ssh.service.NewsService"></bean>  
+    <!-- 添加spring对jersey的支持  end
 	<bean id="myserviceRegister" class="com.supre.webservice.MyServiceRegister"></bean>
-    <!-- 添加spring对jersey的支持  end-->
+    -->
 	
 	
 </beans>
