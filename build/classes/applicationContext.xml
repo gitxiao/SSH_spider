@@ -102,4 +102,11 @@
 
     <bean id="testAction" class="org.apache.struts2.JUnitTestAction"/>
     <bean id="mySessionBean" class="org.apache.struts2.MySessionBean" scope="session" /> -->
+    
+    <!-- 添加spring对jersey的支持  start-->
+    <bean id="newsService" class="cn.muke.ssh.service.NewsService"></bean>  
+	<bean id="myserviceRegister" class="com.supre.webservice.MyServiceRegister"></bean>
+    <!-- 添加spring对jersey的支持  end-->
+	
+	
 </beans>

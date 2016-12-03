@@ -9,7 +9,7 @@
             <column name="id" />
             <generator class="identity" />
         </id>
-        <property name="url" column="url" length="200" type="java.lang.String"/>
+        <property name="url" column="url" length="300" type="java.lang.String"/>
         
     </class>
 </hibernate-mapping>

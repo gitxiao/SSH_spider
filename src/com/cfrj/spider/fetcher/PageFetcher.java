@@ -110,7 +110,7 @@ public class PageFetcher {
 			// 因请求超时等问题产生的异常，将URL放回待抓取队列，重新爬取
 			e.printStackTrace();
 			Log.info(">> Put back url: " + url);
-			VisitedUrlQueue.addElementWithException(tNews,"异常");
+			VisitedUrlQueue.addElement(tNews.getUrl(),"异常");
 //			UrlQueue.addLastElement(urlStr);			//TODO 重新放回队列时应该计数,否则如果一直有异常,会无限重新爬取
 		} finally{
 			try {

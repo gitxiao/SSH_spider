@@ -10,7 +10,7 @@ import com.cfrj.spider.storage.DataStorage;
 
 import cn.muke.ssh.domain.T_News;
 import cn.muke.ssh.domain.T_Visited;
-import cn.muke.ssh.service.T_NewsService;
+import cn.muke.ssh.service.NewsService;
 
 public class VisitedUrlQueue {
 	// 已抓取url队列
@@ -18,18 +18,22 @@ public class VisitedUrlQueue {
 	private static Map<String,String> visitedPages = new HashMap<String,String>();
 	private static Map<String,String> exceptionPages = new HashMap<String,String>();
 	private static T_Visited visited = new T_Visited();
-	public synchronized static void addElement(T_News tNews,String desc){
-		System.out.println("爬取网页: " + desc + "	 " + tNews.getUrl() + ",深度:" + tNews.getDepth() + ",爬取数量:" + size());
-		visitedPages.put(tNews.getUrl(), desc);
-		visited.setUrl(tNews.getUrl());
+	public synchronized static void addElement(String url,String desc){
+//		System.out.println("爬取网页: " + desc + "	 " + url + ",爬取数量:" + size());
+		visitedPages.put(url, desc);			//优化速度时可删除
 		
-		visited.setUrl(tNews.getUrl());
+		visited.setUrl(url);
 		DataStorage.saveVisited(visited);
 	}
 	
-	public synchronized static void addElementWithException(T_News tNews,String desc){
-		System.out.println("异常网页: " + desc + "	 " + tNews.getUrl());
-		exceptionPages.put(tNews.getUrl(), desc);
+	/**
+	 * 异常网页是否应该保存到数据库?
+	 * @param url
+	 * @param desc
+	 */
+	public synchronized static void addElementWithException(String url,String desc){
+//		System.out.println("异常网页: " + desc + "	 " + tNews.getUrl());
+		exceptionPages.put(url, desc);
 	}
 	
 	public synchronized static boolean isEmpty(){
@@ -42,6 +46,12 @@ public class VisitedUrlQueue {
 	
 	public static boolean isContains(String url){
 		//TODO 需要查询数据库
-		return visitedPages.containsKey(url) || exceptionPages.containsKey(url);
+		boolean visited = DataStorage.findVisited(url);
+		if(visited){
+			System.out.println("已爬 url = " + url);
+		}
+		return visited;
+//		return visited || exceptionPages.containsKey(url);
+//		return visitedPages.containsKey(url) || exceptionPages.containsKey(url);
 	}
 }

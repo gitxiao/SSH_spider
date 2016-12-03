@@ -26,7 +26,6 @@ public class ContentParser {
 		if(title != null){
 			title = this.outTag(title);
 			fetchedPage.gettNews().setTitle(title);
-			System.out.println("title.length = " + title.length());
 		}
 		
 //		System.out.println("fetchedPage.getContent() :" + fetchedPage.getContent());
@@ -34,7 +33,11 @@ public class ContentParser {
 //		System.out.println("fetchedPage.getUrl() :" + fetchedPage.getUrl());
 //		System.out.println("标题:" + title + ",elemTitle.get(0) = " + elemTitle.get(0));
 		
-		VisitedUrlQueue.addElement(fetchedPage.gettNews(),title);			//网页添加到爬取结果页面,TODO 持久化工作
+		//TODO 深度为多少的时候不需要存储? 待定
+		//深度为0的url不需要保存进数据库, 因为肯定每次都需要重新爬取
+		if(fetchedPage.gettNews().getDepth() > 1){
+			VisitedUrlQueue.addElement(fetchedPage.gettNews().getUrl(),title);			
+		}
 		
 //		Element elemContent = doc.getElementById("content");
 //		String content = elemContent.html();
@@ -69,10 +72,10 @@ public class ContentParser {
 //			System.out.println(urlDesc + ":	" + newUrl);
 			
 			//http://www.mohurd.gov.cn" style=
-			if("http://www.mohurd.gov.cn\" style=".equals(newUrl)){
-				System.out.println("fetchedPage.gettNews().getUrl() = " + fetchedPage.gettNews().getUrl());
-				System.out.println("fetchedPage.getContent() = " + fetchedPage.getContent());
-			}
+//			if("http://www.mohurd.gov.cn\" style=".equals(newUrl)){
+//				System.out.println("fetchedPage.gettNews().getUrl() = " + fetchedPage.gettNews().getUrl());
+//				System.out.println("fetchedPage.getContent() = " + fetchedPage.getContent());
+//			}
 			if(newUrl != null){								
 				UrlQueue.addElement(newUrl,fetchedPage.gettNews().getDepth() + 1);
 			}
@@ -92,7 +95,7 @@ public class ContentParser {
 //		}
 		
 		float ran = random.nextFloat();
-		return ran < 0.002;
+		return ran < 0.02;
 	}
 	
 	

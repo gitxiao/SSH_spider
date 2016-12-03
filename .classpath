@@ -31,14 +31,24 @@
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jackson-jaxrs-1.9.2.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jackson-mapper-asl-1.9.2.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jackson-xc-1.9.2.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jersey-client-1.12.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jersey-core-1.12.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jersey-json-1.12.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jersey-multipart-1.12.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jersey-server-1.12.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jersey-servlet-1.12.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jettison-1.1.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/json.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jsoup-1.5.2.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/commons-lang-2.6.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jersey-apache-client-1.18.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jersey-atom-abdera-1.18.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jersey-client-1.18.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jersey-core-1.18.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jersey-guice-1.18.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jersey-json-1.18.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jersey-multipart-1.18.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jersey-server-1.18.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jersey-servlet-1.18.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jersey-simple-server-1.18.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jersey-spring-1.18.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/oauth-client-1.18.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/oauth-server-1.18.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/oauth-signature-1.18.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

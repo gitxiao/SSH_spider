@@ -30,7 +30,7 @@
 
     <filter-mapping>
         <filter-name>struts2</filter-name>
-        <url-pattern>/*</url-pattern>
+        <url-pattern>/struts2/*</url-pattern>
     </filter-mapping>
     <!-- END SNIPPET: filter -->
 
@@ -39,5 +39,22 @@
         <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
 
+
+    <!-- jersey相关配置 start -->
+	<servlet>
+		<display-name>JAX-RS REST Servlet</display-name>
+		<servlet-name>JAX-RS REST Servlet</servlet-name>
+		<servlet-class>com.sun.jersey.spi.container.servlet.ServletContainer</servlet-class>
+		<init-param>
+           <param-name>JSONConfiguration.FEATURE_POJO_MAPPING</param-name>
+            <param-value>true</param-value> 
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>JAX-RS REST Servlet</servlet-name>
+		<url-pattern>/services/*</url-pattern>
+	</servlet-mapping>
+	<!-- jersey相关配置 end -->
 
 </web-app>

@@ -4,6 +4,7 @@ import java.util.logging.Logger;
 
 import cn.muke.ssh.domain.T_News;
 
+import com.cfrj.spider.SpiderStarter;
 import com.cfrj.spider.fetcher.PageFetcher;
 import com.cfrj.spider.handler.ContentHandler;
 import com.cfrj.spider.model.FetchedPage;
@@ -44,8 +45,8 @@ public class SpiderWorker implements Runnable{
 				// 从待抓取队列中拿URL
 				T_News tNews = UrlQueue.outElement();
 				
-				//拿到的url判断是否已经存在于已抓取队列,如果存在,则跳过
-				if(VisitedUrlQueue.isContains(tNews.getUrl())){
+				//拿到的url判断是否已经存在于已抓取队列,如果存在,则跳过. 深度为0的url不能跳过,深度为0的是目标网站
+				if(tNews.getDepth() != 0 && VisitedUrlQueue.isContains(tNews.getUrl())){
 					continue;
 				}
 //			System.out.println("爬取url------------------------------------------------------:" + url);
@@ -72,11 +73,14 @@ public class SpiderWorker implements Runnable{
 				
 				// delay
 				try {
-					Thread.sleep(SpiderParams.DEYLAY_TIME);			//等待新抓取的url进入队列
+					if(UrlQueue.isEmpty()){
+						Thread.sleep(SpiderParams.DEYLAY_TIME);			//等待新抓取的url进入队列
+					}
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
 			}
+			SpiderStarter.wokerEnd();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

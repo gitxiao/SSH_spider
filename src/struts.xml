@@ -7,6 +7,9 @@
 
     <constant name="struts.enable.DynamicMethodInvocation" value="false" />
     <constant name="struts.devMode" value="false" />
+    
+    <!--struts2添加对jersey的支持 设置不拦截的路径，对与web service路径请求不被struts2拦截 -->  
+    <constant name="struts.action.excludePattern" value="/services/.*" /> 
 
     <package name="ssh" namespace="/" extends="struts-default">
 
